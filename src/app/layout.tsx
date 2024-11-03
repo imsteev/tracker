@@ -21,9 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <div className="flex flex-col items-center w-screen md:w-2/3 m-auto p-12">
+        <div className="flex flex-col items-center w-screen md:w-2/5 m-auto p-12">
           <NavLinks />
-
           {children}
         </div>
       </body>

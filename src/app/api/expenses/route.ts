@@ -1,10 +1,12 @@
 export const GET = () => {
+  const allExpenses = db.all();
   return new Response(
     JSON.stringify({
-      id: 1,
-      amount: 10.25,
-      display: "$10.25",
-      date: new Date(),
+      expenses: db.all(),
+      total: Object.values(allExpenses).reduce(
+        (acc, cur) => acc + cur.amount,
+        0
+      ),
     })
   );
 };

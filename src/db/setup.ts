@@ -9,4 +9,7 @@ export const db = {
     // @ts-expect-error asdf
     return store[key];
   },
+  all() {
+    return store;
+  },
 };

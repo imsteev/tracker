@@ -14,27 +14,27 @@ console.log(process.env);
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export const POST = async (request: Request) => {
-  // const previewExpense = {
-  //   id: -1,
-  //   amount: 10.52,
-  //   displayAmount: "$10.52",
-  //   date: new Date(),
-  //   category: "Food",
-  //   description: "Ramen Matsu - Cloister, NJ",
-  // };
+  const previewExpense = {
+    id: -1,
+    amount: 10.52,
+    displayAmount: "$10.52",
+    date: new Date(),
+    category: "Food",
+    description: "Ramen Matsu - Cloister, NJ",
+  };
 
   // BELOW HITS OPEN AI
-  const text = await request.text();
-  const completion = await openai.beta.chat.completions.parse({
-    messages: [
-      { role: "system", content: systemPrompt },
-      { role: "user", content: text },
-    ],
-    model: "gpt-4o",
-    response_format: zodResponseFormat(expenseSchema, "expense"),
-  });
-  const previewExpense = completion.choices[0].message.parsed;
-  console.log(completion.choices[0]);
+  // const text = await request.text();
+  // const completion = await openai.beta.chat.completions.parse({
+  //   messages: [
+  //     { role: "system", content: systemPrompt },
+  //     { role: "user", content: text },
+  //   ],
+  //   model: "gpt-4o",
+  //   response_format: zodResponseFormat(expenseSchema, "expense"),
+  // });
+  // const previewExpense = completion.choices[0].message.parsed;
+  // console.log(completion.choices[0]);
 
   return new Response(JSON.stringify(previewExpense));
 };

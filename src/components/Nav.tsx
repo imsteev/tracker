@@ -1,5 +1,5 @@
 "use client";
-import { serverUrl } from "@/url";
+import { serverUrl } from "@/lib/url";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -11,9 +11,7 @@ export const NavLinks = () => {
 
   useEffect(() => {
     fetch(serverUrl("/expenses"))
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((expSum) => {
         setTotal(expSum.total);
       });
@@ -23,23 +21,22 @@ export const NavLinks = () => {
     <div className="flex w-full justify-between p-2 bg-indigo-800 text-white">
       <div className="flex gap-2 ">
         <Link
-          href="/"
-          className={clsx(undefined, {
-            underline: pathname == "/",
-          })}
-        >
-          Home
-        </Link>
-        <Link
           href="/expenses"
           className={clsx(undefined, {
-            underline: pathname == "/expenses",
+            underline: pathname == "/expenses" || pathname == "/",
           })}
         >
           Expenses
         </Link>
+        <Link
+          href="/expenses/new"
+          className={clsx(undefined, {
+            underline: pathname == "/expenses/new",
+          })}
+        >
+          New
+        </Link>
       </div>
-      <div>Total: {total}</div>
     </div>
   );
 };
