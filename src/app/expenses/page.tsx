@@ -1,4 +1,5 @@
 import { db } from "@/db/setup";
+import { desc } from "drizzle-orm";
 import {
   Table,
   TableBody,
@@ -8,9 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { expenses } from "@/db/schema";
 
-export default function Expenses() {
-  const expenses = Object.entries(db.all());
+export default async function Expenses() {
+  const es = await db.select().from(expenses).orderBy(desc(expenses.date));
   return (
     <div className="w-full h-screen flex justify-center">
       <Table>
@@ -23,7 +25,7 @@ export default function Expenses() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {expenses.map(([_, e]) => {
+          {es.map((e) => {
             return (
               <TableRow key={e.id}>
                 <TableCell className="font-medium">{e.id}</TableCell>

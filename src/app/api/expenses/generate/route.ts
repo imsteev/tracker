@@ -4,20 +4,16 @@ import { z } from "zod";
 
 const expenseSchema = z.object({
   amount: z.number(),
-  displayAmount: z.string(),
   date: z.string(),
   category: z.string(),
   description: z.string(),
 });
 
-console.log(process.env);
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export const POST = async (request: Request) => {
   const previewExpense = {
-    id: -1,
     amount: 10.52,
-    displayAmount: "$10.52",
     date: new Date(),
     category: "Food",
     description: "Ramen Matsu - Cloister, NJ",

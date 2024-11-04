@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Preview } from "./Preview";
 import { Button } from "@/components/ui/button";
 import { serverUrl } from "@/lib/url";
+import { saveExpense } from "./actions";
 
 export default function Expenses() {
   const [previewExpense, setPreviewExpense] = useState(null);
@@ -20,18 +21,18 @@ export default function Expenses() {
       .finally(() => setLoading(false));
   };
 
-  const saveExpense = async (expense: any) => {
-    setLoading(true);
-    return fetch(serverUrl("/expenses"), {
-      method: "POST",
-      body: JSON.stringify(expense), // TODO: add file links.
-      headers: { "Content-Type": "application/json" },
-    })
-      .then(() => {
-        setText("");
-      })
-      .finally(() => setLoading(false));
-  };
+  // const saveExpense = async (expense: any) => {
+  //   setLoading(true);
+  //   return fetch(serverUrl("/expenses"), {
+  //     method: "POST",
+  //     body: JSON.stringify(expense), // TODO: add file links.
+  //     headers: { "Content-Type": "application/json" },
+  //   })
+  //     .then(() => {
+  //       setText("");
+  //     })
+  //     .finally(() => setLoading(false));
+  // };
 
   return (
     <div className="w-full h-screen flex justify-center">
