@@ -30,7 +30,10 @@ export const POST = async (request: Request) => {
       { role: "user", content: text },
     ],
     model: "gpt-4o",
-    response_format: zodResponseFormat(expenseSchema, "expense"),
+    response_format: zodResponseFormat(
+      z.object({ expenses: z.array(expenseSchema) }),
+      "expenses"
+    ),
   });
   const previewExpense = completion.choices[0].message.parsed;
   console.log(completion.choices[0]);
@@ -41,7 +44,7 @@ export const POST = async (request: Request) => {
 const systemPrompt = `
 You are an expert at expense bookkeeping, and knowledgeable about taxonomies.
 
-Please respond to user requests by returning an expense with the shape:
+Please respond to user requests by returning (potentially multiple) expenses with the shape:
 
 - date (YYYY-MM-DD, default to today)
 - amount (decimal, two-places)

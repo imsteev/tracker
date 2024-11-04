@@ -6,7 +6,7 @@ import { serverUrl } from "@/lib/url";
 import { saveExpense } from "./actions";
 
 export default function Expenses() {
-  const [previewExpense, setPreviewExpense] = useState(null);
+  const [previewExpenses, setPreviewExpenses] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +17,7 @@ export default function Expenses() {
       body: text,
     })
       .then((res) => res.json())
-      .then((e) => setPreviewExpense(e))
+      .then((e) => setPreviewExpenses(e.expenses))
       .finally(() => setLoading(false));
   };
 
@@ -46,8 +46,12 @@ export default function Expenses() {
           Upload files
         </Button>
         <div className="mt-8">
-          <b>Preview</b>
-          <Preview expense={previewExpense} onSave={saveExpense} />
+          <b>Preview ({previewExpenses.length})</b>
+          <div className="flex flex-col gap-4 mt-4">
+            {previewExpenses.map((pe) => (
+              <Preview expense={pe} onSave={saveExpense} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
