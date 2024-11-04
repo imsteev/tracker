@@ -1,36 +1,31 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+This project is using Bun as the package manager.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+### Run the dev server
+```
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This starts a server at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
+```
+OPENAI_API_KEY=<your_api_key>
+DATABASE_URL=<some_postgres_connection_string>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Tech stack
 
-## Learn More
+- NextJS
+- TailwindCSS
+- DrizzleORM
+- Postgres
 
-To learn more about Next.js, take a look at the following resources:
+**Why Next?** Optimizing for rapid full-stack development while leveraging tools I'm familiar with (i.e, React).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Why Tailwind?** Tailwind provides considerable flexibility yet remains ergonomic with sane out-of-the-box defaults. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Why Drizzle?** CLI-based tooling makes it easy to get going fast (e.g, migrations, schema generation, etc.).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Why Postgres?** Likely need to model and query relations in SQL-like manner.
