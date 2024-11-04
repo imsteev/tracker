@@ -23,7 +23,10 @@ export const POST = async (request: Request) => {
   const text = await request.text();
   const completion = await openai.beta.chat.completions.parse({
     messages: [
-      { role: "system", content: systemPrompt },
+      {
+        role: "system",
+        content: `Today is ${new Date().toDateString()}.\n` + systemPrompt,
+      },
       { role: "user", content: text },
     ],
     model: "gpt-4o",
@@ -37,11 +40,11 @@ export const POST = async (request: Request) => {
 
 const systemPrompt = `
 You are an expert at expense bookkeeping, and knowledgeable about taxonomies.
+
 Please respond to user requests by returning an expense with the shape:
 
-- date (YYYY-MM-DD)
+- date (YYYY-MM-DD, default to today)
 - amount (decimal, two-places)
-- displayAmount (string, with dollar sign)
 - categories: (string)
 - notes: (string, optional)
 - files: (array[string, optional])
