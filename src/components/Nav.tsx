@@ -9,9 +9,9 @@ export const NavLinks = () => {
     <div className="flex w-full justify-between p-2 bg-indigo-800 text-white">
       <div className="flex gap-2 ">
         <Link
-          href="/expenses"
+          href="/"
           className={clsx(undefined, {
-            underline: pathname == "/expenses" || pathname == "/",
+            underline: pathname == "/",
           })}
         >
           Expenses
