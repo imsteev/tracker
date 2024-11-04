@@ -8,14 +8,4 @@ export async function saveExpense(json: any) {
   console.log(json);
   await db.insert(expenses).values(json);
   revalidatePath("/expenses/new");
-
-  // return fetch(serverUrl("/expenses"), {
-  //   method: "POST",
-  //   body: JSON.stringify(expense), // TODO: add file links.
-  //   headers: { "Content-Type": "application/json" },
-  // })
-  //   .then(() => {
-  //     setText("");
-  //   })
-  //   .finally(() => setLoading(false));
 }
