@@ -31,7 +31,7 @@ export default function Expenses() {
           placeholder="what did you purchase?"
         ></textarea>
         <Button
-          disabled={loading}
+          disabled={!text.trim() || loading}
           onClick={generateExpense}
           variant="secondary"
         >
@@ -48,8 +48,8 @@ export default function Expenses() {
         <div className="mt-8">
           <b>Preview ({previewExpenses.length})</b>
           <div className="flex flex-col gap-4 mt-4">
-            {previewExpenses.map((pe) => (
-              <Preview expense={pe} onSave={saveExpense} />
+            {previewExpenses.map((pe, i) => (
+              <Preview key={i} expense={pe} onSave={saveExpense} />
             ))}
           </div>
         </div>

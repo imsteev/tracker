@@ -20,7 +20,10 @@ export const POST = async (request: Request) => {
   // };
 
   // BELOW HITS OPEN AI
-  const text = await request.text();
+  const text = (await request.text()).trim();
+  if (!text) {
+    throw new Error("must provide content");
+  }
   const completion = await openai.beta.chat.completions.parse({
     messages: [
       {
@@ -36,8 +39,6 @@ export const POST = async (request: Request) => {
     ),
   });
   const previewExpense = completion.choices[0].message.parsed;
-  console.log(completion.choices[0]);
-
   return new Response(JSON.stringify(previewExpense));
 };
 

@@ -6,6 +6,6 @@ import { revalidatePath } from "next/cache";
 
 export async function saveExpense(json: any) {
   console.log(json);
-  await db.insert(expenses).values(json.expenses);
+  await db.insert(expenses).values(json);
   revalidatePath("/expenses/new");
 }
